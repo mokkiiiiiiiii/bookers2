@@ -1,0 +1,24 @@
+<h1>編集画面</h1>
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @book, url: update_list_path(@book.id), method: :patch do |f| %>
+
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+
+  <%= f.submit '保存' %>
+
+  <td><%=link_to "Show",book_path(book.id)%></td>
+
+<% end %>
